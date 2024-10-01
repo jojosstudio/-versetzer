@@ -3,23 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morsecode Generator</title>
-    <script src="morsecode.js"></script>
+    <title>Text Konverter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg'); /* Hintergrundbild */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        textarea {
+            width: calc(100% - 22px);
+            height: 100px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+            resize: none;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Morsecode Generator</h1>
-    <textarea id="inputText" rows="10" cols="30" placeholder="Gib hier deinen Text ein..."></textarea><br>
-    <button id="generateButton">Generiere Morsecode</button>
-    <h2>Ergebnis:</h2>
-    <pre id="morseOutput"></pre>
+    <div class="container">
+        <img src="logo.png" alt="Logo"> <!-- Logo-Bild -->
+        <h1>Text Konverter</h1>
+        <textarea id="inputText" placeholder="Gib hier deinen Text ein..."></textarea>
+        <button onclick="convertToMorse()">Zu Morsecode konvertieren</button>
+        <button onclick="convertFromMorse()">Von Morsecode konvertieren</button>
+        <button onclick="convertToReverse()">Rückwärts konvertieren</button>
+        <button onclick="convertFromReverse()">Von Rückwärts konvertieren</button>
+        <textarea id="outputText" readonly placeholder="Ergebnis..."></textarea>
+    </div>
 
-    <script>
-        document.getElementById('generateButton').onclick = function() {
-            const inputText = document.getElementById('inputText').value;
-            const morseCode = Module.cwrap('generateMorse', 'string', ['string']);
-            const result = morseCode(inputText);
-            document.getElementById('morseOutput').innerText = result;
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
