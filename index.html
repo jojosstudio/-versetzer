@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morsecode Generator</title>
+    <script src="morsecode.js"></script>
+</head>
+<body>
+    <h1>Morsecode Generator</h1>
+    <textarea id="inputText" rows="10" cols="30" placeholder="Gib hier deinen Text ein..."></textarea><br>
+    <button id="generateButton">Generiere Morsecode</button>
+    <h2>Ergebnis:</h2>
+    <pre id="morseOutput"></pre>
+
+    <script>
+        document.getElementById('generateButton').onclick = function() {
+            const inputText = document.getElementById('inputText').value;
+            const morseCode = Module.cwrap('generateMorse', 'string', ['string']);
+            const result = morseCode(inputText);
+            document.getElementById('morseOutput').innerText = result;
+        };
+    </script>
+</body>
+</html>
