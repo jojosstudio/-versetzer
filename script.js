@@ -6,7 +6,16 @@ const morseCodeMap = {
     '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', ' ': '/'
 };
 
+const brailleMap = {
+    'A': '⠁', 'B': '⠃', 'C': '⠉', 'D': '⠙', 'E': '⠑', 'F': '⠋', 'G': '⠛', 'H': '⠓',
+    'I': '⠊', 'J': '⠚', 'K': '⠅', 'L': '⠇', 'M': '⠍', 'N': '⠝', 'O': '⠕', 'P': '⠏',
+    'Q': '⠟', 'R': '⠗', 'S': '⠎', 'T': '⠞', 'U': '⠥', 'V': '⠧', 'W': '⠺', 'X': '⠭',
+    'Y': '⠽', 'Z': '⠵', '0': '⠴', '1': '⠂', '2': '⠆', '3': '⠒', '4': '⠲', '5': '⠢',
+    '6': '⠖', '7': '⠶', '8': '⠦', '9': '⠔', ' ': ' '
+};
+
 const reverseMorseCodeMap = Object.fromEntries(Object.entries(morseCodeMap).map(([k, v]) => [v, k]));
+const reverseBrailleMap = Object.fromEntries(Object.entries(brailleMap).map(([k, v]) => [v, k]));
 
 function convertToMorse() {
     const inputText = document.getElementById('inputText').value.toUpperCase();
@@ -53,4 +62,34 @@ function convertFromReverse() {
     const inputText = document.getElementById('inputText').value;
     const originalText = inputText.split('').reverse().join('');
     document.getElementById('outputText').value = originalText;
+}
+
+function convertToBraille() {
+    const inputText = document.getElementById('inputText').value.toUpperCase();
+    let brailleText = '';
+
+    for (let char of inputText) {
+        if (brailleMap[char]) {
+            brailleText += brailleMap[char];
+        } else {
+            brailleText += char;
+        }
+    }
+
+    document.getElementById('outputText').value = brailleText;
+}
+
+function convertFromBraille() {
+    const inputText = document.getElementById('inputText').value;
+    let normalText = '';
+
+    for (let char of inputText) {
+        if (reverseBrailleMap[char]) {
+            normalText += reverseBrailleMap[char];
+        } else {
+            normalText += char;
+        }
+    }
+
+    document.getElementById('outputText').value = normalText;
 }
