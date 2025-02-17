@@ -93,3 +93,15 @@ function convertFromBraille() {
 
     document.getElementById('outputText').value = normalText;
 }
+
+function convertToASCII() {
+            let input = document.getElementById("inputText").value;
+            let output = input.split('').map(char => char.charCodeAt(0)).join(' ');
+            document.getElementById("outputText").value = output;
+        }
+
+        function convertFromASCII() {
+            let input = document.getElementById("inputText").value;
+            let output = input.split(' ').map(code => String.fromCharCode(code)).join('');
+            document.getElementById("outputText").value = output;
+        }
