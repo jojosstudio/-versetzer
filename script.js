@@ -51,13 +51,18 @@ function convertFromBraille() {
 }
 
 function convertToASCII() {
-    const inputText = document.getElementById('inputText').value;
-    const asciiText = inputText.split('').map(char => char.charCodeAt(0)).join(' ');
-    document.getElementById('outputText').value = asciiText;
+    let input = document.getElementById("inputText").value;
+    let output = input.split('')
+                      .map(char => char.charCodeAt(0).toString(2).padStart(8, '0')) // Wandelt in Binär (8 Bit)
+                      .join(' ');
+    document.getElementById("outputText").value = output;
 }
 
 function convertFromASCII() {
-    const inputText = document.getElementById('inputText').value;
-    const normalText = inputText.split(' ').map(code => String.fromCharCode(code)).join('');
-    document.getElementById('outputText').value = normalText;
+    let input = document.getElementById("inputText").value;
+    let output = input.split(' ')
+                      .map(code => String.fromCharCode(parseInt(code, 2))) // Wandelt Binär zurück in Zeichen
+                      .join('');
+    document.getElementById("outputText").value = output;
 }
+
