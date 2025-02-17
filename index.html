@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('background.jpg'); /* Hintergrundbild */
+            background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -20,7 +20,7 @@
             text-align: center;
         }
         .container {
-            background-color: rgba(0, 0, 0, 100);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 10px;
             width: 80%;
@@ -63,16 +63,17 @@
 </head>
 <body>
     <div class="container">
-        <img src="logo.png" alt="Logo"> <!-- Logo-Bild -->
+        <img src="logo.png" alt="Logo"> 
         <h1>Leons Schrift Konverter</h1>
         <textarea id="inputText" placeholder="Gib hier deinen Text ein..."></textarea>
         <button onclick="convertToMorse()">Zu Normal Schrift konvertieren</button>
         <button onclick="convertFromMorse()">Von Leons Schrift konvertieren</button>
         <button onclick="convertToReverse()">Rückwärts konvertieren</button>
         <button onclick="convertFromReverse()">Von Rückwärts konvertieren</button>
+        <button onclick="convertToBraille()">Zu Blinden-Schrift konvertieren</button>
+        <button onclick="convertFromBraille()">Von Blinden-Schrift konvertieren</button>
         <textarea id="outputText" readonly placeholder="Ergebnis..."></textarea>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
