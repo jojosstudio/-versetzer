@@ -2,62 +2,105 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neue Siri Animation</title>
+  <title>Siri Animation</title>
   <style>
+    /* Grundlayout */
     body {
       margin: 0;
       padding: 0;
-      background: #000;
-      overflow: hidden;
-    }
-    /* Vollbild-Overlay mit animiertem Farbverlauf */
-    .siri-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
+      background-color: #f0f0f5;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       height: 100vh;
-      background: linear-gradient(120deg, #0072ff, #00c6ff, #8a2be2, #ff00ff);
-      background-size: 200% 200%;
-      animation: moveGradient 5s linear infinite;
-      /* Maske, die den zentralen Bereich freilässt */
-      -webkit-mask-image: radial-gradient(circle at center, transparent 25%, black 40%);
-      mask-image: radial-gradient(circle at center, transparent 25%, black 40%);
-      z-index: 100;
     }
-    @keyframes moveGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Container für die Animation */
+    #siri-animation {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 20px;
     }
-    /* Fade-Out-Effekt, um das Overlay nach einer Weile auszublenden */
-    .fade-out {
-      animation: fadeOut 1s forwards;
+    /* Stil und Animation der Kreise */
+    .siri-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      margin: -25px; /* zentriert den Kreis */
+      border: 2px solid #007AFF; /* Apple-Blau */
+      border-radius: 50%;
+      opacity: 0;
+      animation: pulse 2s infinite;
     }
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
+    /* Gestaffelte Animationen für einen fließenden Effekt */
+    .siri-circle:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .siri-circle:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    .siri-circle:nth-child(3) {
+      animation-delay: 1s;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(0.5);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+    /* Überschrift */
+    h1 {
+      font-size: 2em;
+      margin: 10px 0;
+      color: #333;
+    }
+    /* Buttons */
+    .buttons {
+      margin-top: 20px;
+    }
+    .buttons button {
+      background-color: #007AFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .buttons button:hover {
+      background-color: #005BB5;
     }
   </style>
 </head>
 <body>
-  <!-- Siri Animation Overlay -->
-  <div class="siri-animation" id="siriAnimation"></div>
+  <!-- Siri-Animation -->
+  <div id="siri-animation">
+    <div class="siri-circle"></div>
+    <div class="siri-circle"></div>
+    <div class="siri-circle"></div>
+  </div>
 
-  <script>
-    window.onload = function() {
-      // Nach 5 Sekunden wird die Siri Animation ausgeblendet
-      setTimeout(function() {
-         var siri = document.getElementById('siriAnimation');
-         siri.classList.add('fade-out');
-         // Optional: Entferne das Element nach dem Fade-Out
-         setTimeout(function() {
-           siri.style.display = 'none';
-         }, 1000);
-      }, 5000);
-    };
-  </script>
+  <!-- Begrüßung -->
+  <h1>Hallo</h1>
+
+  <!-- Navigation -->
+  <div class="buttons">
+    <button onclick="window.location.href='page1.html'">Seite 1</button>
+    <button onclick="window.location.href='page2.html'">Seite 2</button>
+    <button onclick="window.location.href='page3.html'">Seite 3</button>
+  </div>
 </body>
 </html>
-
