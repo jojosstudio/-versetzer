@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Style Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            margin: 0;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .apple-animation {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,0,0) 70%);
+            opacity: 0;
+            animation: appleIntelligent 2s ease-in-out forwards;
+        }
+        @keyframes appleIntelligent {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .hello {
+            font-size: 2em;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 2.5s;
+        }
+        .button-container {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .show-buttons {
+            display: flex !important;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            setTimeout(() => {
+                document.querySelector('.hello').style.display = 'block';
+            }, 2500);
+            setTimeout(() => {
+                document.querySelector('.hello').style.display = 'none';
+                document.querySelector('.button-container').classList.add('show-buttons');
+            }, 5000);
+        };
+    </script>
+</head>
+<body>
+    <div class="apple-animation"></div>
+    <div class="hello">Hallo</div>
+    <div class="button-container">
+        <button>Button 1</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+    </div>
+</body>
+</html>
