@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konverter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            padding: 12px;
+            border: none;
+            font-size: 16px;
+            resize: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background: linear-gradient(45deg, #45a049, #4CAF50);
+            transform: scale(1.05);
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo"> 
+        <h1>Schrift Konverter</h1>
+        <textarea id="inputText" placeholder="Gib hier deinen Text ein..."></textarea>
+        <select id="conversionType">
+            <option value="morse">Morse Code</option>
+            <option value="reverse">Rückwärts</option>
+            <option value="braille">Blinden-Schrift</option>
+            <option value="ascii">ASCII</option>
+        </select>
+        <button onclick="encodeText()">Encoden</button>
+        <button onclick="decodeText()">Decoden</button>
+      <button onclick="window.location.href='index.html'">Zurück</button>
+        <textarea id="outputText" readonly placeholder="Ergebnis..."></textarea>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
