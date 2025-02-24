@@ -9,8 +9,12 @@
         #container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
         #introVideo { width: 200px; height: auto; border-radius: 50%; }
         #chatbox { display: none; margin-top: 20px; width: 80%; max-width: 300px; text-align: left; }
-        .speech-bubble { background: #333; padding: 10px; border-radius: 10px; margin: 5px; }
-        #response { opacity: 0; transition: opacity 1s ease-in-out; }
+        .speech-bubble { background: #333; padding: 10px; border-radius: 10px; margin: 5px; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .typing { display: inline-block; width: 4px; height: 4px; background: white; border-radius: 50%; animation: blink 1.5s infinite; }
+        .typing::after, .typing::before { content: ''; display: inline-block; width: 4px; height: 4px; background: white; border-radius: 50%; margin-left: 3px; animation: blink 1.5s infinite; }
+        .typing::before { animation-delay: 0.2s; }
+        .typing::after { animation-delay: 0.4s; }
+        @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
         #buttonContainer { display: none; margin-top: 20px; }
         button { background: #444; color: white; padding: 10px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; }
     </style>
@@ -23,7 +27,8 @@
         </video>
         
         <div id="chatbox">
-            <p class="speech-bubble"><strong>Du:</strong> Hallo</p>
+            <p id="message1" class="speech-bubble"><strong>Du:</strong> Hallo</p>
+            <p id="typing" class="speech-bubble"><span class="typing"></span></p>
             <p id="response" class="speech-bubble"><strong>AI:</strong> Dies ist die Seite für den Converter. Wähle eine Version:</p>
         </div>
         
@@ -38,9 +43,16 @@
         document.getElementById("introVideo").onended = function() {
             document.getElementById("chatbox").style.display = "block";
             setTimeout(() => {
-                document.getElementById("response").style.opacity = 1;
+                document.getElementById("message1").style.opacity = 1;
                 setTimeout(() => {
-                    document.getElementById("buttonContainer").style.display = "block";
+                    document.getElementById("typing").style.opacity = 1;
+                    setTimeout(() => {
+                        document.getElementById("typing").style.opacity = 0;
+                        document.getElementById("response").style.opacity = 1;
+                        setTimeout(() => {
+                            document.getElementById("buttonContainer").style.display = "block";
+                        }, 1000);
+                    }, 1500);
                 }, 1000);
             }, 1000);
         };
