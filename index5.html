@@ -6,24 +6,30 @@
     <title>Converter-Seite</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; background-color: #111; color: white; }
-        #chatbox { display: none; margin-top: 20px; }
+        #container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+        #introVideo { width: 200px; height: auto; border-radius: 50%; }
+        #chatbox { display: none; margin-top: 20px; width: 80%; max-width: 300px; text-align: left; }
+        .speech-bubble { background: #333; padding: 10px; border-radius: 10px; margin: 5px; }
         #response { opacity: 0; transition: opacity 1s ease-in-out; }
+        ul { padding-left: 20px; }
     </style>
 </head>
 <body>
-    <video id="introVideo" width="80%" autoplay muted>
-        <source src="Animation - 1740403831364.mp4" type="video/mp4">
-        Dein Browser unterstützt keine Videos.
-    </video>
-    
-    <div id="chatbox">
-        <p><strong>Du:</strong> Hallo</p>
-        <p id="response"><strong>Siri:</strong> Dies ist die Seite für den Converter. Hier sind die drei Versionen:</p>
-        <ul id="converterList" style="display: none;">
-            <li>Version 1: Basis-Converter</li>
-            <li>Version 2: Erweiterter Converter</li>
-            <li>Version 3: Profi-Converter</li>
-        </ul>
+    <div id="container">
+        <video id="introVideo" autoplay muted>
+            <source src="Animation - 1740403831364.mp4" type="video/mp4">
+            Dein Browser unterstützt keine Videos.
+        </video>
+        
+        <div id="chatbox">
+            <p class="speech-bubble"><strong>Du:</strong> Hallo</p>
+            <p id="response" class="speech-bubble"><strong>Siri:</strong> Dies ist die Seite für den Converter. Hier sind die drei Versionen:</p>
+            <ul id="converterList" style="display: none;">
+                <li>Version 1: Basis-Converter</li>
+                <li>Version 2: Erweiterter Converter</li>
+                <li>Version 3: Profi-Converter</li>
+            </ul>
+        </div>
     </div>
 
     <script>
