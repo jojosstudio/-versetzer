@@ -97,6 +97,69 @@
       <button onclick="window.location.href='index.html'">Zurück</button>
         <textarea id="outputText" readonly placeholder="Ergebnis..."></textarea>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const morseCodeMap = {
+    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
+    'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
+    'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+    'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
+    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', ' ': '/'
+};
+
+const brailleMap = {
+    'A': '⠁', 'B': '⠃', 'C': '⠉', 'D': '⠙', 'E': '⠑', 'F': '⠋', 'G': '⠛', 'H': '⠓',
+    'I': '⠊', 'J': '⠚', 'K': '⠅', 'L': '⠇', 'M': '⠍', 'N': '⠝', 'O': '⠕', 'P': '⠏',
+    'Q': '⠟', 'R': '⠗', 'S': '⠎', 'T': '⠞', 'U': '⠥', 'V': '⠧', 'W': '⠺', 'X': '⠭',
+    'Y': '⠽', 'Z': '⠵', '0': '⠴', '1': '⠂', '2': '⠆', '3': '⠒', '4': '⠲', '5': '⠢',
+    '6': '⠖', '7': '⠶', '8': '⠦', '9': '⠔', ' ': ' '
+};
+
+const reverseMorseCodeMap = Object.fromEntries(Object.entries(morseCodeMap).map(([k, v]) => [v, k]));
+const reverseBrailleMap = Object.fromEntries(Object.entries(brailleMap).map(([k, v]) => [v, k]));
+
+function encodeText() {
+    const inputText = document.getElementById('inputText').value.toUpperCase();
+    const conversionType = document.getElementById('conversionType').value;
+    let outputText = '';
+
+    switch (conversionType) {
+        case 'morse':
+            outputText = inputText.split('').map(char => morseCodeMap[char] || char).join(' ');
+            break;
+        case 'reverse':
+            outputText = inputText.split('').reverse().join('');
+            break;
+        case 'braille':
+            outputText = inputText.split('').map(char => brailleMap[char] || char).join('');
+            break;
+        case 'ascii':
+            outputText = inputText.split('').map(char => char.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+            break;
+    }
+    document.getElementById('outputText').value = outputText;
+}
+
+function decodeText() {
+    const inputText = document.getElementById('inputText').value.trim();
+    const conversionType = document.getElementById('conversionType').value;
+    let outputText = '';
+
+    switch (conversionType) {
+        case 'morse':
+            outputText = inputText.split(' ').map(code => reverseMorseCodeMap[code] || code).join('');
+            break;
+        case 'reverse':
+            outputText = inputText.split('').reverse().join('');
+            break;
+        case 'braille':
+            outputText = inputText.split('').map(char => reverseBrailleMap[char] || char).join('');
+            break;
+        case 'ascii':
+            outputText = inputText.split(' ').map(code => String.fromCharCode(parseInt(code, 2))).join('');
+            break;
+    }
+    document.getElementById('outputText').value = outputText;
+}
+    </script>
 </body>
 </html>
