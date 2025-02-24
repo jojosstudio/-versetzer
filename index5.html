@@ -11,7 +11,8 @@
         #chatbox { display: none; margin-top: 20px; width: 80%; max-width: 300px; text-align: left; }
         .speech-bubble { background: #333; padding: 10px; border-radius: 10px; margin: 5px; }
         #response { opacity: 0; transition: opacity 1s ease-in-out; }
-        ul { padding-left: 20px; }
+        #buttonContainer { display: none; margin-top: 20px; }
+        button { background: #444; color: white; padding: 10px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -23,12 +24,13 @@
         
         <div id="chatbox">
             <p class="speech-bubble"><strong>Du:</strong> Hallo</p>
-            <p id="response" class="speech-bubble"><strong>Siri:</strong> Dies ist die Seite für den Converter. Hier sind die drei Versionen:</p>
-            <ul id="converterList" style="display: none;">
-                <li>Version 1: Basis-Converter</li>
-                <li>Version 2: Erweiterter Converter</li>
-                <li>Version 3: Profi-Converter</li>
-            </ul>
+            <p id="response" class="speech-bubble"><strong>AI:</strong> Dies ist die Seite für den Converter. Wähle eine Version:</p>
+        </div>
+        
+        <div id="buttonContainer">
+            <button onclick="window.location.href='version1.html'">Version 1</button>
+            <button onclick="window.location.href='version2.html'">Version 2</button>
+            <button onclick="window.location.href='version3.html'">Version 3</button>
         </div>
     </div>
 
@@ -38,7 +40,7 @@
             setTimeout(() => {
                 document.getElementById("response").style.opacity = 1;
                 setTimeout(() => {
-                    document.getElementById("converterList").style.display = "block";
+                    document.getElementById("buttonContainer").style.display = "block";
                 }, 1000);
             }, 1000);
         };
